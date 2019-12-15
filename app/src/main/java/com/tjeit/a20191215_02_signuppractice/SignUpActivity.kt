@@ -1,5 +1,6 @@
 package com.tjeit.a20191215_02_signuppractice
 
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -38,12 +39,15 @@ class SignUpActivity : BaseActivity() {
             val inputStr = it.toString()
             if (inputStr.length == 0) {
                 pwStatusTxt.text = "비밀번호가 입력되지 않았습니다."
+                pwStatusTxt.setTextColor(Color.RED)
             }
             else if (inputStr.length < 8) {
                 pwStatusTxt.text = "입력된 비번이 너무 짧습니다."
+                pwStatusTxt.setTextColor(Color.parseColor("#FDA0EF"))
             }
             else {
                 pwStatusTxt.text = "사용해도 좋은 비밀번호입니다."
+                pwStatusTxt.setTextColor(Color.GREEN)
             }
         }
 
