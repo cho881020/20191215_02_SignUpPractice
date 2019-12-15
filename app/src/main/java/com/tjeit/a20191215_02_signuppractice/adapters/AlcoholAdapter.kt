@@ -40,6 +40,28 @@ class AlcoholAdapter(context:Context, resId:Int, list:ArrayList<Alcohol>)
 
     }
 
+    override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
+        var tempRow = convertView
+
+        tempRow?.let {
+
+        }.let {
+            tempRow = inf.inflate(R.layout.alcohol_spinner_list_item, null)
+        }
+
+        val row = tempRow!!
+
+        val data = mList.get(position)
+
+        val alcoholBrandNameTxt = row.findViewById<TextView>(R.id.alcoholBrandNameTxt)
+        val alcoholTypeTxt = row.findViewById<TextView>(R.id.alcoholTypeTxt)
+
+        alcoholBrandNameTxt.text = data.brandName
+        alcoholTypeTxt.text = "(${data.type})"
+
+
+        return row
+    }
 
 }
 
