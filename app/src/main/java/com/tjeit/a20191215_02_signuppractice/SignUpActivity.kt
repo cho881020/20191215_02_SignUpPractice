@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
@@ -35,6 +36,10 @@ class SignUpActivity : BaseActivity() {
 //
 //        })
 
+        birthDayTxt.setOnClickListener {
+            Toast.makeText(mContext, "생일 지정 텍스트뷰 클릭", Toast.LENGTH_SHORT).show()
+        }
+
         pwEdt.addTextChangedListener {
             val inputStr = it.toString()
             if (inputStr.length == 0) {
@@ -43,7 +48,7 @@ class SignUpActivity : BaseActivity() {
             }
             else if (inputStr.length < 8) {
                 pwStatusTxt.text = "입력된 비번이 너무 짧습니다."
-                pwStatusTxt.setTextColor(Color.parseColor("#FDA0EF"))
+                pwStatusTxt.setTextColor(Color.parseColor("#E1D5E7"))
             }
             else {
                 pwStatusTxt.text = "사용해도 좋은 비밀번호입니다."
