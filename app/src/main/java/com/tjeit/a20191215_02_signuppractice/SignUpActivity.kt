@@ -31,6 +31,14 @@ class SignUpActivity : BaseActivity() {
 
             val timePickerDialog = TimePickerDialog(mContext, TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
 
+//                시간을 캘린더에 저장
+                selectedBirthDay?.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                selectedBirthDay?.set(Calendar.MINUTE, minute)
+
+//                캘린더에 저장된 값을 SimpleDateFormat 이용해 화면 출력
+                val sdf = SimpleDateFormat("a H:mm")
+                birthTimeTxt.text = sdf.format(selectedBirthDay?.time)
+
             }, 20, 5, false)
             timePickerDialog.show()
 
@@ -77,7 +85,7 @@ class SignUpActivity : BaseActivity() {
 
 //                저장된 생년월일을 SimpleDateFormat을 이용해 출력
 
-                val sdf = SimpleDateFormat("yyyy년 MM월 d일")
+                val sdf = SimpleDateFormat("yyyy년 MM월 d일 (E)")
                 birthDayTxt.text = sdf.format(selectedBirthDay?.time)
 
 
