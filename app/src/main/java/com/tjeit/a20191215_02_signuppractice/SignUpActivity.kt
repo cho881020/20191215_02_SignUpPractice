@@ -14,6 +14,8 @@ import java.util.*
 // SignUpActivity로 변경!
 class SignUpActivity : BaseActivity() {
 
+    var selectedBirthDay:Calendar? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -44,6 +46,25 @@ class SignUpActivity : BaseActivity() {
 
                 val selectedDateStr = "${year} / ${month} / ${dayOfMonth}"
                 birthDayTxt.text = selectedDateStr
+
+                selectedBirthDay?.let {
+                    Log.d("생년월일선택", "이미 선택된 값을 수정 - 다시 선택")
+
+                }.let {
+                    Log.d("생년월일선택", "선택된 값이 새로 생김 - 처음 선택")
+                    selectedBirthDay = Calendar.getInstance()
+//                    Q. selectedBirthDay 에 담긴 날짜는 몇월 몇일? 2019년 12월 15일
+//                    이 담긴 날짜를 => 선택한 년/월/일로 대입.
+                }
+
+
+                selectedBirthDay?.set(Calendar.YEAR, year)
+                selectedBirthDay?.set(Calendar.MONTH, month)
+                selectedBirthDay?.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+                selectedBirthDay?.set(year, month, dayOfMonth)
+
+
 
 
             }, 2019, Calendar.DECEMBER, 15)
