@@ -1,5 +1,6 @@
 package com.tjeit.a20191215_02_signuppractice
 
+import android.app.DatePickerDialog
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
@@ -8,6 +9,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import java.util.*
 
 // SignUpActivity로 변경!
 class SignUpActivity : BaseActivity() {
@@ -37,7 +39,20 @@ class SignUpActivity : BaseActivity() {
 //        })
 
         birthDayTxt.setOnClickListener {
-            Toast.makeText(mContext, "생일 지정 텍스트뷰 클릭", Toast.LENGTH_SHORT).show()
+
+            val datePickerDialog = DatePickerDialog(mContext, DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+
+                val selectedDateStr = "${year} / ${month} / ${dayOfMonth}"
+                birthDayTxt.text = selectedDateStr
+
+
+            }, 2019, Calendar.DECEMBER, 15)
+
+//                자바에서는 월을 0~11월로 사용함. 생각하는것보다 1 작은 숫자를 월로 넣어줘야함
+//                Calendar클래스의 변수를 활용해서 월을 입력하면 보기에 직관적.
+
+            datePickerDialog.show()
+
         }
 
         pwEdt.addTextChangedListener {
